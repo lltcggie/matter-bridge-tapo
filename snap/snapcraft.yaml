@@ -24,8 +24,8 @@ parts:
   connectedhomeip:
     after: [build-res]
     plugin: nil
-    override-build: |   
-      git clone https://github.com/project-chip/connectedhomeip.git --depth=1 --branch=v1.0.0.2 .
+    override-build: |
+      git clone https://github.com/project-chip/connectedhomeip.git --depth=1 --branch=v1.5.0.0 .
       scripts/checkout_submodules.py --shallow --platform linux
 
       # The project writes its data to /tmp. Snap does not allow bind mounting
@@ -55,6 +55,7 @@ parts:
       - gcc
       - g++
       - pkg-config
+      - cmake
       - libssl-dev
       - libdbus-1-dev
       - libglib2.0-dev
@@ -68,6 +69,7 @@ parts:
       - libcairo2-dev
       - libreadline-dev
       - generate-ninja
+      - default-jre
 
   tapo-bridge:
     after: [connectedhomeip]
@@ -77,7 +79,7 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/bin $CRAFT_PART_INSTALL/etc
       cp run.sh $CRAFT_PART_INSTALL/bin/
       cp lighting.py $CRAFT_PART_INSTALL/bin/
-      
+
     stage-packages:
       - python3
       - python3-venv
