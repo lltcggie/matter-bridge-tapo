@@ -4,12 +4,13 @@ summary: Matter Bridge for Tapo L530E multi-color light bulb
 description: Refer to https://snapcraft.io/matter-bridge-tapo-lighting
 license: Apache-2.0
 confinement: strict
-base: core22
+base: core24
 grade: devel
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
 
 layout:
   /mnt:
